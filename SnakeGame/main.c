@@ -75,7 +75,49 @@ void NewFood(int *x, int *y, int SnakeX[400], int SnakeY[400], int SnakeLenth){
     *y= b;
 }
 
+void PrintCurrentState(int Board[50][50],int SnakeX[400],int SnakeY[400],int Snakelength, int FoodX,int FoodY){
+    printf("\n\n");
+    char screen[50][50];
+    int i,j;
+    for(i=0; i<50; i++)
+    {
+        for (j= 0; j<50; j++)
+        {
+            if(Board[i][j]==0 )
+            {
+                screen[i][j]=' ';
+            }
+            else
+            {
+                screen[i][j]='*';
+            }
+        }
+    }
+    for (i=0; i< Snakelength;i++)
+    {
+        if (i!= Snakelength-1)
+        {
+        screen[SnakeY[i]][SnakeX[i]] = '*';
+        }
+        else
+        {
+            screen[SnakeY[i]][SnakeX[i]] = '0';
+        }
+    }
+    screen[FoodY][FoodX]= 'F';
+    for (i=0;i<50;i++)
+    {
+        printf("\t");
+        for (j=0;j<50;j++)
+        {
+            printf("%c",screen[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+    printf("\t\t\tScore: %d", Snakelength-3);
 
+}
 void GoUp(int Board[50][50],int SnakeX[400],int SnakeY[400],int *Snakelength, int *FoodX,int *FoodY)
 {
     int i,j;
@@ -96,5 +138,65 @@ void GoUp(int Board[50][50],int SnakeX[400],int SnakeY[400],int *Snakelength, in
             SnakeY[i]=SnakeY[i+1];
         }
         SnakeY[(*Snakelength)-1]= (SnakeY[(*Snakelength)-1]-1+50)%50;
+    }
+}
+void GoDown(int Board[50][50],int SnakeX[400],int SnakeY[400],int *Snakelength, int *FoodX,int *FoodY)
+{
+    int i,j;
+    if(SnakeX[(*Snakelength)-1]==*FoodX&& (SnakeY[(*Snakelength)-1]+1+50)%50==*FoodY)
+    {
+        SnakeX[*Snakelength]= *FoodX;
+        SnakeY[*Snakelength]= *FoodY;
+        (*Snakelength)++;
+        NewFood(&(*FoodX),&(*FoodY),SnakeX, SnakeY,*Snakelength);
+    }
+    else
+    {
+        for(i= 0; i<*Snakelength-1;i++)
+        {
+            SnakeX[i]=SnakeX[i+1];
+            SnakeY[i]=SnakeY[i+1];
+        }
+        SnakeY[(*Snakelength)-1]= (SnakeY[(*Snakelength)-1]+1)%50;
+    }
+}
+void GoLeft(int Board[50][50],int SnakeX[400],int SnakeY[400],int *Snakelength, int *FoodX,int *FoodY)
+{
+    int i,j;
+    if(SnakeY[(*Snakelength)-1]==*FoodY&& (SnakeX[(*Snakelength)-1]-1+50)%50==*FoodX)
+    {
+        SnakeX[*Snakelength]= *FoodX;
+        SnakeY[*Snakelength]= *FoodY;
+        (*Snakelength)++;
+        NewFood(&(*FoodX),&(*FoodY),SnakeX, SnakeY,*Snakelength);
+    }
+    else
+    {
+        for(i= 0; i<*Snakelength-1;i++)
+        {
+            SnakeX[i]=SnakeX[i+1];
+            SnakeY[i]=SnakeY[i+1];
+        }
+        SnakeX[(*Snakelength)-1]= (SnakeX[(*Snakelength)-1]-1+50)%50;
+    }
+}
+void GoRight(int Board[50][50],int SnakeX[400],int SnakeY[400],int *Snakelength, int *FoodX,int *FoodY)
+{
+    int i,j;
+    if(SnakeY[(*Snakelength)-1]==*FoodY&& (SnakeX[(*Snakelength)-1]+1+50)%50== *FoodX)
+    {
+        SnakeX[*Snakelength]= *FoodX;
+        SnakeY[*Snakelength]= *FoodY;
+        (*Snakelength)++;
+        NewFood(&(*FoodX),&(*FoodY),SnakeX, SnakeY,*Snakelength);
+    }
+    else
+    {
+        for(i= 0; i<*Snakelength-1;i++)
+        {
+            SnakeX[i]=SnakeX[i+1];
+            SnakeY[i]=SnakeY[i+1];
+        }
+        SnakeX[(*Snakelength)-1]= (SnakeX[(*Snakelength)-1]+1)%50;
     }
 }
