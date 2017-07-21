@@ -200,3 +200,90 @@ void GoRight(int Board[50][50],int SnakeX[400],int SnakeY[400],int *Snakelength,
         SnakeX[(*Snakelength)-1]= (SnakeX[(*Snakelength)-1]+1)%50;
     }
 }
+int AbleToGoup(int SnakeX[400], int SnakeY[400], int Snakelength)
+{
+    if(SnakeX[Snakelength-1]==SnakeX[Snakelength-2]&& (SnakeY[Snakelength-1]-1)%50==SnakeY[Snakelength-2])
+    {
+        return 0;
+    }
+    return 1;
+}
+int AbleToDown(int SnakeX[400], int SnakeY[400], int Snakelength)
+{
+    if(SnakeX[Snakelength-1]==SnakeX[Snakelength-2]&& (SnakeY[Snakelength-1]+1)%50==SnakeY[Snakelength-2])
+    {
+        return 0;
+    }
+    return 1;
+}
+
+int AbleToLeft(int SnakeX[400], int SnakeY[400], int Snakelength)
+{
+    if((SnakeX[Snakelength-1]-1)%50==SnakeX[Snakelength-2]&& SnakeY[Snakelength-1]==SnakeY[Snakelength-2])
+    {
+        return 0;
+    }
+    return 1;
+}
+int AbleToRight(int SnakeX[400], int SnakeY[400], int Snakelength)
+{
+    if((SnakeX[Snakelength-1]+1)%50==SnakeX[Snakelength-2]&& SnakeY[Snakelength-1]==SnakeY[Snakelength-2])
+    {
+        return 0;
+    }
+    return 1;
+}
+
+int IsOver(int Board[50][50],int SnakeX[400], int SnakeY[400], int Snakelength, int Direction)
+{
+    int Screen[50][50];
+    int i, j;
+    for (i=0; i<50;i++)
+    {
+        for (j=0; j<50; j++)
+        {
+            if (Board[i][j]==1&& i!=1&&j!=1&&i!=48&&j!=48)
+            {
+                Screen[i][j]= 1;
+            }
+            else
+            {
+                Screen[i][j]=0;
+            }
+        }
+    }
+    for (i=0; i<Snakelength-1; i++)
+    {
+        Screen[SnakeY[i]][SnakeX[i]]=1;
+    }
+    int over = 0;
+    if (Direction==UP)
+    {
+        int newx = SnakeX[Snakelength-1];
+        int newy = (SnakeY[Snakelength-1]+49)%50;
+        if (Screen[newx][newy]== 1)
+            over = 1;
+    }
+    if(Direction==RIGHT)
+    {
+        int newx = (SnakeX[Snakelength-1]+51)%50;
+        int newy = SnakeY[Snakelength-1];
+        if (Screen[newx][newy]== 1)
+            over = 1;
+    }
+    if (Direction==DOWN)
+    {
+        int newx = SnakeX[Snakelength-1];
+        int newy = (SnakeY[Snakelength-1]+51)%50;
+        if (Screen[newx][newy]== 1)
+            over = 1;
+    }
+    if (Direction==LEFT)
+    {
+        int newx = (SnakeX[Snakelength-1]+49)%50;
+        int newy = SnakeY[Snakelength-1];
+        if (Screen[newx][newy]== 1)
+            over = 1;
+    }
+    return over;
+}
