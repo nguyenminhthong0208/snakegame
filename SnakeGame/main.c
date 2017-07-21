@@ -287,3 +287,110 @@ int IsOver(int Board[50][50],int SnakeX[400], int SnakeY[400], int Snakelength, 
     }
     return over;
 }
+int main()
+{
+
+    char key[5];
+    printf("\n\n\n\t\t\t Hello!\n");
+    printf("\t\t\t Welcome to Snake Game!\n");
+    printf("\t\t\t (Enter 'Yes' or 'Y' to Begin the Game )!\n");
+    printf("\t\t\t ");
+    scanf("%s",&key);
+    printf(key);
+    while (strcmp("Yes",key) != 0||strcmp("Yes",key) != 0||strcmp("Y",key) != 0||strcmp("Y",key) != 0)
+    //while(key == 'yes'|| key== 'y'|| key== 'Yes'|| key == 'Y' )
+    {
+    int Board[50][50];
+    int SnakeX[200];
+    int SnakeY[200];
+    int FoodX= 8, FoodY=8;
+    int snakelength =3;
+
+    InitBoard(Board, 1);
+    InnitSnake(SnakeX, SnakeY);
+    PrintCurrentState(Board, SnakeX,SnakeY,snakelength,32,29);
+    int pre = RIGHT;
+    int a = RIGHT;
+
+    while(!IsOver(Board, SnakeX,SnakeY,snakelength,a))
+    {
+
+        do
+        {
+            int q;
+            system("cls");
+
+            if (a== RIGHT){
+                GoRight(Board, SnakeX,SnakeY,&snakelength,&FoodX,&FoodY);
+            }
+            else if(a== LEFT)
+            {
+                GoLeft(Board, SnakeX,SnakeY,&snakelength,&FoodX,&FoodY);
+            }
+            else if (a== UP)
+            {
+                GoUp(Board, SnakeX,SnakeY,&snakelength,&FoodX,&FoodY);
+            }
+            else if( a== DOWN)
+            {
+                GoDown(Board, SnakeX,SnakeY,&snakelength,&FoodX,&FoodY);
+            }
+            PrintCurrentState(Board, SnakeX,SnakeY,snakelength,FoodX,FoodY);
+            for(q=0;q<=10000000;q++);
+            if(IsOver(Board, SnakeX,SnakeY,snakelength,a))
+            {
+                break;
+            }
+        }
+        while(!kbhit());
+        int q;
+        for(q=0; q<=10000000;q++);
+        if(IsOver(Board, SnakeX,SnakeY,snakelength,a))
+        {
+            break;
+        }
+        int prest = a;
+        a= getch();
+        if ((a== RIGHT&& !AbleToRight(SnakeX,SnakeY,snakelength))||(a== UP&& !AbleToGoup(SnakeX,SnakeY,snakelength))||(a== DOWN&& !AbleToDown(SnakeX,SnakeY,snakelength))||(a== LEFT&& !AbleToLeft(SnakeX,SnakeY,snakelength)))
+        {
+           a = prest;
+        }
+    }
+
+
+    system("cls");
+    printf("\n\n\n");
+    printf("\t\t                                    \n");
+    printf("\t\t $$$$$$$$ $$$$$$$$$ $$$$$$$$$$$ $$$$$\n");
+    printf("\t\t $$    $$ $$     $$ $$   $   $$ $$   \n");
+    printf("\t\t $$   $$$ $$$$$$$$$ $$   $   $$ $$$$$\n");
+    printf("\t\t $$    $$ $$     $$ $$       $$ $$   \n");
+    printf("\t\t $$$$$$$$ $$     $$ $$       $$ $$$$$\n");
+    printf("\t\t                                     \n");
+    printf("\t\t $$$$$$$$$ $$$$  $$$ $$$$$ $$$$$$$$$ \n");
+    printf("\t\t $$     $$   $$  $$  $$    $$     $$ \n");
+    printf("\t\t $$     $$   $$  $$  $$$$$ $$$$$$$$$ \n");
+    printf("\t\t $$     $$   $$  $$  $$    $$     $$ \n");
+    printf("\t\t $$$$$$$$$   _$$$  _ $$$$$ $$     $$$\n");
+    printf("\t\t                                     \n");
+    printf("\t\t         $$               $$         \n");
+    printf("\t\t       $$$$$   $$$$$$$   $$$$$       \n");
+    printf("\t\t          $$$$$$$$$$$$$$$$$          \n");
+    printf("\t\t            $$$$$$$$$$$$$            \n");
+    printf("\t\t            $$$$$$$$$$$$$            \n");
+    printf("\t\t            $$   $$$   $$            \n");
+    printf("\t\t            $$$$$$$$$$$$$            \n");
+    printf("\t\t             $$$$$$$$$$$             \n");
+    printf("\t\t         $$$$$  $$$$$  $$$$$         \n");
+    printf("\t\t         $$$$           $$$$         \n");
+    printf("\t\t           $$           $$           \n");
+    printf("\t\t                                     \n");
+    printf("\n\n\t\t\t Your Score is: %d\n\n", snakelength-3);
+
+
+    printf("Enter 'Yes' or 'Y' to continue, enter 'No' or 'N' to quit: ");
+    scanf("%s",&key);
+    }
+
+    return 0;
+}
