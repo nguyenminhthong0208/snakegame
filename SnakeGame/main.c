@@ -291,33 +291,32 @@ int main()
 {
 
     char key[5];
-    printf("\n\n\n\t\t\t Hello!\n");
+    printf("\n\n\n\t\t\t\t\t Hello!\n");
     printf("\t\t\t  ssssssss ss ss    ss ssss    ss   \n");
     printf("\t\t\t  ss       ss ss    ss ss ss   ss    \n");
     printf("\t\t\t  ss   sss ss ss    ss ss  ss  ss   \n");
     printf("\t\t\t  ss    ss ss ss    ss ss   ss ss    \n");
     printf("\t\t\t  ssssssss ss ssssssss ss    ssss    \n");
-    printf("\t\t\t Welcome to Snake Game!\n");
+    printf("\t\t\t\t Welcome to Snake Game!\n");
     printf("\t\t\t (Enter 'Yes' or 'Y' to Begin the Game )!\n");
     printf("\t\t\t ");
     scanf("%s",&key);
     printf(key);
-    while (strcmp("Yes",key) != 0||strcmp("Yes",key) != 0||strcmp("Y",key) != 0||strcmp("Y",key) != 0)
-    //while(key == 'yes'|| key== 'y'|| key== 'Yes'|| key == 'Y' )
+    while (strcmp("Yes",key) != 0||strcmp("Yes",key) != 0||strcmp("Y",key) != 0||strcmp("y",key) != 0)
     {
     int Board[50][50];
     int SnakeX[200];
     int SnakeY[200];
-    int FoodX= 8, FoodY=8;
-    int snakelength =3;
+    int FoodX=8, FoodY=8;
+    int snakelength=3;
 
     InitBoard(Board, 1);
     InnitSnake(SnakeX, SnakeY);
-    PrintCurrentState(Board, SnakeX,SnakeY,snakelength,32,29);
+    PrintCurrentState(Board, SnakeX, SnakeY, snakelength,32,29);
     int pre = RIGHT;
     int a = RIGHT;
 
-    while(!IsOver(Board, SnakeX,SnakeY,snakelength,a))
+    while(!IsOver(Board, SnakeX, SnakeY, snakelength, a))
     {
 
         do
@@ -392,9 +391,11 @@ int main()
     printf("\t\t                                     \n");
     printf("\n\n\t\t\t Your Score is: %d\n\n", snakelength-3);
 
-
     printf("Enter 'Yes' or 'Y' to continue, enter 'No' or 'N' to quit: ");
     scanf("%s",&key);
+    
+	if (strcmp("No",key) != 0||strcmp("no",key) != 0||strcmp("N",key) != 0||strcmp("n",key) != 0)
+        return 0;
     }
 
     return 0;
