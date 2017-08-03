@@ -391,11 +391,9 @@ int main()
     printf("\t\t                                     \n");
     printf("\n\n\t\t\t Your Score is: %d\n\n", snakelength-3);
 
-    printf("Enter 'Yes' or 'Y' to continue, enter 'No' or 'N' to quit: ");
+    printf("Enter 'Yes' or 'Y' to continue");
     scanf("%s",&key);
     
-	if (strcmp("No",key) != 0||strcmp("no",key) != 0||strcmp("N",key) != 0||strcmp("n",key) != 0)
-        return 0;
     }
 
     return 0;
