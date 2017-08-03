@@ -292,11 +292,11 @@ int main()
 
     char key[5];
     printf("\n\n\n\t\t\t Hello!\n");
-    printf("\t\t ssssssss ss ss    ss ssss    s    \n");
-    printf("\t\t ss       ss ss    ss ss ss   s    \n");
-    printf("\t\t ss   sss ss ss    ss ss  ss  s    \n");
-    printf("\t\t ss    ss ss ss    ss ss   ss s    \n");
-    printf("\t\t ssssssss ss ssssssss ss    sss    \n");
+    printf("\t\t ssssssss ss ss    ss ssss    ss   \n");
+    printf("\t\t ss       ss ss    ss ss ss   ss    \n");
+    printf("\t\t ss   sss ss ss    ss ss  ss  ss   \n");
+    printf("\t\t ss    ss ss ss    ss ss   ss ss    \n");
+    printf("\t\t ssssssss ss ssssssss ss    ssss    \n");
     printf("\t\t\t Welcome to Snake Game!\n");
     printf("\t\t\t (Enter 'Yes' or 'Y' to Begin the Game )!\n");
     printf("\t\t\t ");
