@@ -13,18 +13,6 @@
 #define LEFT 75
 #define RIGHT 77
 
-void PrintBoard(int Board[50][50]){
-    printf("\n\n");
-    int i,j;
-    for(i=0; i<50; i++){
-            printf("\t\t");
-            for (j= 0; j<50; j++){
-                printf("%d",Board[i][j]);
-            }
-            printf("\n");
-    }
-}
-
 void InitBoard(int Board[50][50], int level){
     int i,j;
     if(level == 1){
@@ -121,7 +109,7 @@ void PrintCurrentState(int Board[50][50],int SnakeX[400],int SnakeY[400],int Sna
 void GoUp(int Board[50][50],int SnakeX[400],int SnakeY[400],int *Snakelength, int *FoodX,int *FoodY)
 {
     int i,j;
-    if(SnakeX[(*Snakelength)-1]==*FoodX&& (SnakeY[(*Snakelength)-1]-1+50)%50==*FoodY)
+    if(SnakeX[(*Snakelength)-1]==*FoodX&& (SnakeY[(*Snakelength)-1]-1==*FoodY))
     {
         SnakeX[*Snakelength]= *FoodX;
         SnakeY[*Snakelength]= *FoodY;
@@ -137,13 +125,13 @@ void GoUp(int Board[50][50],int SnakeX[400],int SnakeY[400],int *Snakelength, in
             SnakeX[i]=SnakeX[i+1];
             SnakeY[i]=SnakeY[i+1];
         }
-        SnakeY[(*Snakelength)-1]= (SnakeY[(*Snakelength)-1]-1+50)%50;
+        SnakeY[(*Snakelength)-1]= (SnakeY[(*Snakelength)-1]-1);
     }
 }
 void GoDown(int Board[50][50],int SnakeX[400],int SnakeY[400],int *Snakelength, int *FoodX,int *FoodY)
 {
     int i,j;
-    if(SnakeX[(*Snakelength)-1]==*FoodX&& (SnakeY[(*Snakelength)-1]+1+50)%50==*FoodY)
+    if(SnakeX[(*Snakelength)-1]==*FoodX&& (SnakeY[(*Snakelength)-1]+1==*FoodY))
     {
         SnakeX[*Snakelength]= *FoodX;
         SnakeY[*Snakelength]= *FoodY;
@@ -157,13 +145,13 @@ void GoDown(int Board[50][50],int SnakeX[400],int SnakeY[400],int *Snakelength, 
             SnakeX[i]=SnakeX[i+1];
             SnakeY[i]=SnakeY[i+1];
         }
-        SnakeY[(*Snakelength)-1]= (SnakeY[(*Snakelength)-1]+1)%50;
+        SnakeY[(*Snakelength)-1]= (SnakeY[(*Snakelength)-1]+1);
     }
 }
 void GoLeft(int Board[50][50],int SnakeX[400],int SnakeY[400],int *Snakelength, int *FoodX,int *FoodY)
 {
     int i,j;
-    if(SnakeY[(*Snakelength)-1]==*FoodY&& (SnakeX[(*Snakelength)-1]-1+50)%50==*FoodX)
+    if(SnakeY[(*Snakelength)-1]==*FoodY&& (SnakeX[(*Snakelength)-1]-1==*FoodX))
     {
         SnakeX[*Snakelength]= *FoodX;
         SnakeY[*Snakelength]= *FoodY;
@@ -177,13 +165,13 @@ void GoLeft(int Board[50][50],int SnakeX[400],int SnakeY[400],int *Snakelength, 
             SnakeX[i]=SnakeX[i+1];
             SnakeY[i]=SnakeY[i+1];
         }
-        SnakeX[(*Snakelength)-1]= (SnakeX[(*Snakelength)-1]-1+50)%50;
+        SnakeX[(*Snakelength)-1]= (SnakeX[(*Snakelength)-1]-1);
     }
 }
 void GoRight(int Board[50][50],int SnakeX[400],int SnakeY[400],int *Snakelength, int *FoodX,int *FoodY)
 {
     int i,j;
-    if(SnakeY[(*Snakelength)-1]==*FoodY&& (SnakeX[(*Snakelength)-1]+1+50)%50== *FoodX)
+    if(SnakeY[(*Snakelength)-1]==*FoodY&& (SnakeX[(*Snakelength)-1]+1== *FoodX))
     {
         SnakeX[*Snakelength]= *FoodX;
         SnakeY[*Snakelength]= *FoodY;
@@ -197,7 +185,7 @@ void GoRight(int Board[50][50],int SnakeX[400],int SnakeY[400],int *Snakelength,
             SnakeX[i]=SnakeX[i+1];
             SnakeY[i]=SnakeY[i+1];
         }
-        SnakeX[(*Snakelength)-1]= (SnakeX[(*Snakelength)-1]+1)%50;
+        SnakeX[(*Snakelength)-1]= (SnakeX[(*Snakelength)-1]+1);
     }
 }
 int AbleToGoup(int SnakeX[400], int SnakeY[400], int Snakelength)
@@ -291,32 +279,33 @@ int main()
 {
 
     char key[5];
-    printf("\n\n\n\t\t\t\t\t Hello!\n");
+    printf("\n\n\n\t\t\t Hello!\n");
     printf("\t\t\t  ssssssss ss ss    ss ssss    ss   \n");
     printf("\t\t\t  ss       ss ss    ss ss ss   ss    \n");
     printf("\t\t\t  ss   sss ss ss    ss ss  ss  ss   \n");
     printf("\t\t\t  ss    ss ss ss    ss ss   ss ss    \n");
     printf("\t\t\t  ssssssss ss ssssssss ss    ssss    \n");
-    printf("\t\t\t\t Welcome to Snake Game!\n");
+    printf("\t\t\t Welcome to Snake Game!\n");
     printf("\t\t\t (Enter 'Yes' or 'Y' to Begin the Game )!\n");
     printf("\t\t\t ");
     scanf("%s",&key);
     printf(key);
-    while (strcmp("Yes",key) != 0||strcmp("Yes",key) != 0||strcmp("Y",key) != 0||strcmp("y",key) != 0)
+    while (strcmp("Yes",key) != 0||strcmp("Yes",key) != 0||strcmp("Y",key) != 0||strcmp("Y",key) != 0)
+    //while(key == 'yes'|| key== 'y'|| key== 'Yes'|| key == 'Y' )
     {
     int Board[50][50];
     int SnakeX[200];
     int SnakeY[200];
-    int FoodX=8, FoodY=8;
-    int snakelength=3;
+    int FoodX= 8, FoodY=8;
+    int snakelength =3;
 
     InitBoard(Board, 1);
     InnitSnake(SnakeX, SnakeY);
-    PrintCurrentState(Board, SnakeX, SnakeY, snakelength,32,29);
+    PrintCurrentState(Board, SnakeX,SnakeY,snakelength,32,29);
     int pre = RIGHT;
     int a = RIGHT;
 
-    while(!IsOver(Board, SnakeX, SnakeY, snakelength, a))
+    while(!IsOver(Board, SnakeX,SnakeY,snakelength,a))
     {
 
         do
@@ -355,7 +344,9 @@ int main()
         }
         int prest = a;
         a= getch();
-        if ((a== RIGHT&& !AbleToRight(SnakeX,SnakeY,snakelength))||(a== UP&& !AbleToGoup(SnakeX,SnakeY,snakelength))||(a== DOWN&& !AbleToDown(SnakeX,SnakeY,snakelength))||(a== LEFT&& !AbleToLeft(SnakeX,SnakeY,snakelength)))
+        if ((a== RIGHT&& !AbleToRight(SnakeX,SnakeY,snakelength))||(a== UP&& !AbleToGoup(SnakeX,SnakeY,snakelength))
+		||(a== DOWN&& !AbleToDown(SnakeX,SnakeY,snakelength))
+		||(a== LEFT&& !AbleToLeft(SnakeX,SnakeY,snakelength)))
         {
            a = prest;
         }
@@ -391,9 +382,9 @@ int main()
     printf("\t\t                                     \n");
     printf("\n\n\t\t\t Your Score is: %d\n\n", snakelength-3);
 
-    printf("Enter 'Yes' or 'Y' to continue");
+
+    printf("Enter 'Yes' or 'Y' to continue: ");
     scanf("%s",&key);
-    
     }
 
     return 0;
